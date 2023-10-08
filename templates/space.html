@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <title>CosmoClassifier</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Javanese+Text%3A400" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro%3A400" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=New+Rocker%3A400" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inknut+Antiqua%3A400" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200;300;500&display=swap" rel="stylesheet">
+  <style>
+        * {
+          margin: 0;
+          padding: 2px ;
+        }
+        .img{
+          margin-right: 5%;
+          margin-bottom: 4px;
+          font-size: 30px;
+          font-family: 'New Rocker';
+          color: #f2f2f2;
+          justify-content: center;
+        }
+
+      .hello a:hover{
+        background-color: #000000;
+        color: #f2f2f2;
+        border-color: rgb(200, 113, 200);
+        border-radius: 20%;
+      }
+
+      .button {
+        margin-left: 39%;
+        position: relative;
+        justify-content: center;
+        padding: 16px 30px;
+        font-size: 1.5rem;
+        color: #fff;
+        border: 2px solid rgba(0, 0, 0, 0.5);
+        border-radius: 10px;
+        text-shadow: 0 0 15px var(--color);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 0.1rem;
+        transition: 0.8s;
+        z-index: 1;
+      }
+      .button:hover {
+        color: rgb(0, 0, 0, 0.7);
+        border: 2px solid rgba(0, 0, 0, 0);
+        box-shadow: 0 0 0px var(--color);
+      }
+      
+      .button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--color);
+        z-index: -1;
+        transform: scale(0);
+        transition: 0.5s;
+      }
+      
+      .button:hover::before {
+        transform: scale(1);
+        transition-delay: 0.5s;
+        box-shadow: 0 0 10px var(--color),
+          0 0 30px var(--color),
+          0 0 60px var(--color);
+      }
+
+      .button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--color);
+        z-index: -1;
+        transform: scale(0);
+        transition: 0.5s;
+      }
+      
+      .button:hover::before {
+        transform: scale(1);
+        transition-delay: 0.5s;
+        box-shadow: 0 0 10px var(--color),
+          0 0 30px var(--color),
+          0 0 60px var(--color);
+      }
+      
+      .button span {
+        position: absolute;
+        background: var(--color);
+        pointer-events: none;
+        border-radius: 4px;
+        box-shadow: 0 0 10px var(--color),
+          0 0 20px var(--color),
+          0 0 30px var(--color),
+          0 0 50px var(--color),
+          0 0 100px var(--color);
+        transition: 0.5s ease-in-out;
+        transition-delay: 0.25s;
+      }
+      
+      .button:hover span {
+        opacity: 0;
+        transition-delay: 0s;
+      }
+      
+      .button span:nth-child(1),
+      .button span:nth-child(3) {
+        width: 40px;
+        height: 4px;
+      }
+      
+      .button:hover span:nth-child(1),
+      .button:hover span:nth-child(3) {
+        transform: translateX(0);
+      }
+      
+      .button span:nth-child(2),
+      .button span:nth-child(4) {
+        width: 4px;
+        height: 40px;
+      }
+      
+      .button:hover span:nth-child(1),
+      .button:hover span:nth-child(3) {
+        transform: translateY(0);
+      }
+      
+      .button span:nth-child(1) {
+        top: calc(50% - 2px);
+        left: -50px;
+        transform-origin: left;
+      }
+      
+      .button:hover span:nth-child(1) {
+        left: 50%;
+      }
+      
+      .button span:nth-child(3) {
+        top: calc(50% - 2px);
+        right: -50px;
+        transform-origin: right;
+      }
+      
+      .button:hover span:nth-child(3) {
+        right: 50%;
+      }
+      
+      .button span:nth-child(2) {
+        left: calc(50% - 2px);
+        top: -50px;
+        transform-origin: top;
+      }
+      
+      .button:hover span:nth-child(2) {
+        top: 50%;
+      }
+      
+      .button span:nth-child(4) {
+        left: calc(50% - 2px);
+        bottom: -50px;
+        transform-origin: bottom;
+      }
+      
+      .button:hover span:nth-child(4) {
+        bottom: 50%;
+      }
+
+        #myVideo {
+          position: fixed;
+          /* width: 100%;
+          height: 100vh; */
+          right: 0;
+          bottom: 0;
+          z-index: -1;
+        }
+
+      
+      .hello a {
+          font-size: 30px;
+          color: #f2f2f2;
+      }
+
+
+      .welcome-to-cc {
+        /* left: 0; */
+        margin: 5% 15% 3% 15%;
+        align-items: center;
+        justify-content: center;
+        font-size: 5rem;
+        line-height: 1.2;
+        text-align: center;
+        font-family: Inknut Antiqua, 'Source Sans Pro';
+        transition-property: all;
+        transition-timing-function: ease-in-out;
+        color: rgba(255, 255, 255, 0.87);
+        text-shadow: 1px 1px 2px black, 0 0 25px rgb(146, 8, 214), 0 0 5px rgb(169, 7, 160);
+      }
+
+      .sub-text {
+        margin: 0 15% 5% 15%;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        line-height: 1.2;
+        text-align: center;
+        font-family: Poppins, 'Source Sans Pro';
+        color: rgba(255, 255, 255, 0.75);
+      }
+      
+      /* ---------------------- Header styles ------------------------*/
+
+      header {
+        margin: 15px 50px 0px 50px;
+        background-color: hsla(0, 0%, 0%, 0.5);
+        color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        display: flex;
+        height: 45px;
+        justify-content: space-between; /* Align logo and title horizontally */
+        align-items: center; /* Vertically center elements */
+        padding: 10px 20px; /* Add padding to the header for spacing */
+      }
+      
+      .container_top {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 10px;
+      }
+      
+      .menu {
+        list-style: none;
+        margin-right: auto; /* Push the menu to the right */
+      }
+      
+      .menu li {
+        display: inline;
+        margin-right: 20px;
+        padding: 5px;
+        padding-bottom: 22px;
+      }
+      
+      .items {
+        display: inline;
+        margin-right: 20px;
+        background-color: hsla(0, 0%, 0%, 0.0);
+        /*padding: 5px;*/
+      }
+      
+      .menu a {
+        text-decoration: none;
+        font-size: 18px;
+        color: white;
+        transition: color 0.5s ease, transform 0.5s ease;
+      }
+      
+      .menu a:hover {
+        text-shadow: 0 0 8px #9500FF, 0 0 8px #9500FF, 0 0 8px #9500FF;
+        transform: scale(1.1);
+      }
+  </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="container_top">
+                <ul class="menu">
+                    <li class="logo">
+                      <a href="space.html">CosmoClassify</a>
+                    </li>
+                    <ul class="items" style="margin-left: 210px;">
+                        <li><a href="space.html" style="text-shadow: 0 0 8px #9500FF, 0 0 8px #9500FF, 0 0 8px #9500FF;">Home</a></li>
+                        <li><a href="analysis.html">Dataset Analysis</a></li>
+                        <li><a href="predictions.html">Prediction</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+  <center><div class="welcome-to-cc">WELCOME to CosmoClassify!</div></center>
+
+  <center><div class="sub-text">Built for the Soft CodeHack Hackathon, this website aims to classify celestial structures on the basis of the measurements of the redshifts and photometric system filters given as input to our <b>98% accurate</b> model.</div></center>
+  
+    <br>
+    <a class="button" href="predictions.html" style="--color: #ffffff;">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Get Predictions
+    </a>
+
+  <video autoplay muted loop id="myVideo">
+    <source src="/static/pexels_videos_2646392 (1080p).mp4" type="video/mp4">
+  </video>
+</body>
+</html>
